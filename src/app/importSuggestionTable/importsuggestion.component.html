@@ -1,27 +1,25 @@
 <table class="striped">
   <thead>
     <tr>
-        <th data-field="id">Name</th>
-        <th data-field="name">Item Name</th>
-        <th data-field="price">Item Price</th>
+        <th data-field="itemName">Item</th>
+        <th data-field="itemVolume">Volume</th>
+        <th data-field="minPriceInSource">Price in source</th>
+        <th data-field="minPriceInDestination">Price in Destination</th>
+        <th data-field="volRemainingInDestination">Volume on market</th>
+        <th data-field="distinctMarketOrdersInDestination">Orders on market</th>
+        <th data-field="numberSoldInDestinationPerDay">Daily Sales</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      <td>Alvin</td>
-      <td>Eclair</td>
-      <td>$0.87</td>
-    </tr>
-    <tr>
-      <td>Alan</td>
-      <td>Jellybean</td>
-      <td>$3.76</td>
-    </tr>
-    <tr>
-      <td>Jonathan</td>
-      <td>Lollipop</td>
-      <td>$7.00</td>
+    <tr *ngFor="let importSuggestion of importSuggestions">
+      <td>{{ importSuggestion.itemName }}</td>
+      <td>{{ importSuggestion.itemVolume }}</td>
+      <td>{{ importSuggestion.minPriceInSource }}</td>
+      <td>{{ importSuggestion.minPriceInDestination }}</td>
+      <td>{{ importSuggestion.volRemainingInDestination }}</td>
+      <td>{{ importSuggestion.distinctMarketOrdersInDestination }}</td>
+      <td>{{ importSuggestion.numberSoldInDestinationPerDay }}</td>
     </tr>
   </tbody>
 </table>
