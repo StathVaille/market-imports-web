@@ -6,16 +6,14 @@ import { HttpModule } from '@angular/http';
 import { MaterializeModule } from "angular2-materialize";
 
 import { AppComponent } from './app.component';
-import { CoursesComponent } from './courses/courses.component';
-import { AuthorsComponent } from './authors/authors.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ImportSuggestionComponent } from "./importSuggestionTable/importSuggestion.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
-    AuthorsComponent,
-    NavbarComponent
+    NavbarComponent,
+    ImportSuggestionComponent
   ],
   imports: [
     BrowserModule,
