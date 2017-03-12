@@ -8,12 +8,14 @@ import { MaterializeModule } from "angular2-materialize";
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ImportSuggestionComponent } from "./importSuggestion/importSuggestion.component";
+import { ItemSearchComponent } from './interestingItems/itemSearch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ImportSuggestionComponent
+    ImportSuggestionComponent,
+    ItemSearchComponent,
   ],
   imports: [
     BrowserModule,

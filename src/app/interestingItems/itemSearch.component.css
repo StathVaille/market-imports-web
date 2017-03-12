@@ -1,0 +1,10 @@
+.autocomplete-content {
+    margin-top: -15px;
+    display: block;
+    opacity: 1;
+    position: static;
+}
+
+label {
+  color: red;
+}

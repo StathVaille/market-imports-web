@@ -28,8 +28,22 @@ export class ImportSuggestionComponent {
   }
 
   loadData(importSuggestions: ImportSuggestion[]){
-    this.importSuggestions = importSuggestions
-    console.log("Loaded " + importSuggestions.length + " import suggestions");
+
+    // Sort by possible daily profit desc
+    var sortedInportSuggestion = importSuggestions.sort((is1, is2) => {
+      if (is1.calculatePossibleDailyProfit() > is2.calculatePossibleDailyProfit()) {
+        return -1;
+      }
+      else if (is1.calculatePossibleDailyProfit() < is2.calculatePossibleDailyProfit()) {
+        return 1;
+      }
+      else{
+        return 0;
+      }
+    })
+
+    this.importSuggestions = sortedInportSuggestion
+    console.log("Loaded " + sortedInportSuggestion.length + " import suggestions");
     this.importSuggestionsLoaded = true
   }
 
