@@ -22,6 +22,18 @@ export class ImportSuggestion implements Serializable<ImportSuggestion> {
     return this.minPriceInDestination - this.minPriceInSource;
   }
 
+  calculatePossibleDailyProfit() : number {
+    return this.calculateProfitPerItem() * this.numberSoldInDestinationPerDay;
+  }
+
+  formatISK(isk: number) : string {
+    return this.roundDecimal(isk).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  roundDecimal(isk: number) : string {
+    return isk.toFixed(2);
+  }
+
   deserialize(input) {
    this.item = new Item().deserialize(input.item);
    this.numLost = input.numLost;

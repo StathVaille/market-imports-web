@@ -1,0 +1,46 @@
+<div *ngIf="!importSuggestionsLoaded">
+  <div class="preloader-wrapper big active loader">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table *ngIf="importSuggestionsLoaded && !errorMessage" class="striped">
+  <thead>
+    <tr>
+        <th data-field="name">Name</th>
+        <th data-field="itemVolume">Volume</th>
+        <th data-field="minPriceInSource">Source Price</th>
+        <th data-field="minPriceInDestination">Destination Price</th>
+        <th data-field="volRemainingInDestination"># On Market</th>
+        <th data-field="distinctMarketOrdersInDestination">Sell Orders</th>
+        <th data-field="numberSoldInDestinationPerDay">Daily Sales</th>
+        <th data-field="profitPerItem">Profit/Item</th>
+        <th data-field="profitPerItem">Profit/Day</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let importSuggestion of importSuggestions">
+      <td>{{ importSuggestion.item.name.en }}</td>
+      <td>{{ importSuggestion.item.volume }}</td>
+      <td>{{ importSuggestion.formatISK(importSuggestion.minPriceInSource) }}</td>
+      <td>{{ importSuggestion.formatISK(importSuggestion.minPriceInDestination) }}</td>
+      <td>{{ importSuggestion.volRemainingInDestination }}</td>
+      <td>{{ importSuggestion.distinctMarketOrdersInDestination }}</td>
+      <td>{{ importSuggestion.roundDecimal(importSuggestion.numberSoldInDestinationPerDay) }}</td>
+      <td>{{ importSuggestion.formatISK(importSuggestion.calculateProfitPerItem()) }}</td>
+      <td>{{ importSuggestion.formatISK(importSuggestion.calculatePossibleDailyProfit()) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
