@@ -1,22 +1,65 @@
+import { Http, Response }          from '@angular/http';
+import { Injectable }              from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
+import { ImportSuggestion } from '../domain/importSuggestion';
+
+@Injectable()
 export class ImportSuggestionService {
-  getImportSuggestions() : any[] {
-      return [{
-                  itemName: "test item",
-                  itemVolume: 40,
-                  minPriceInSource: 100.3,
-                  minPriceInDestination: 234.2,
-                  volRemainingInDestination: 7,
-                  distinctMarketOrdersInDestination: 34,
-                  numberSoldInDestinationPerDay: 3
-              },
-              {
-                  itemName: "test item",
-                  itemVolume: 40,
-                  minPriceInSource: 100.3,
-                  minPriceInDestination: 234.2,
-                  volRemainingInDestination: 7,
-                  distinctMarketOrdersInDestination: 34,
-                  numberSoldInDestinationPerDay: 3
-              }]
+
+  // private url = 'http://localhost:5000/api/fakeimport';
+  private url = 'http://localhost:5000/api/import';
+
+  constructor(private _http: Http) {}
+
+  getImportSuggestions(): Observable<ImportSuggestion[]>  {
+    console.log('Loading data...')
+    return this._http.get(this.url)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
+
+  private extractData(res: Response){
+    console.log('Data loaded')
+    let body = res.json();
+    return body.data || { };
+  }
+
+  private handleError(error: Response | any){
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
+
+  // getStaticImportSuggestions() : any[] {
+  //     return [{
+  //                 itemName: "test item",
+  //                 itemVolume: 40,
+  //                 minPriceInSource: 100.3,
+  //                 minPriceInDestination: 234.2,
+  //                 volRemainingInDestination: 7,
+  //                 distinctMarketOrdersInDestination: 34,
+  //                 numberSoldInDestinationPerDay: 3
+  //             },
+  //             {
+  //                 itemName: "test item",
+  //                 itemVolume: 40,
+  //                 minPriceInSource: 100.3,
+  //                 minPriceInDestination: 234.2,
+  //                 volRemainingInDestination: 7,
+  //                 distinctMarketOrdersInDestination: 34,
+  //                 numberSoldInDestinationPerDay: 3
+  //             }]
+  // }
 }

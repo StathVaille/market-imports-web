@@ -1,25 +1,31 @@
+<button (click)="getImportSuggestions()">Get Import Suggestions</button>
+
 <table class="striped">
   <thead>
     <tr>
-        <th data-field="itemName">Item</th>
+        <th data-field="name">Name</th>
         <th data-field="itemVolume">Volume</th>
         <th data-field="minPriceInSource">Price in source</th>
         <th data-field="minPriceInDestination">Price in Destination</th>
         <th data-field="volRemainingInDestination">Volume on market</th>
         <th data-field="distinctMarketOrdersInDestination">Orders on market</th>
         <th data-field="numberSoldInDestinationPerDay">Daily Sales</th>
+        <!-- <th data-field="profitPerItem">Profit/item</th> -->
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let importSuggestion of importSuggestions">
-      <td>{{ importSuggestion.itemName }}</td>
-      <td>{{ importSuggestion.itemVolume }}</td>
+      <td>{{ importSuggestion.item.name.en }}</td>
+      <td>{{ importSuggestion.volRemainingInDestination }}</td>
       <td>{{ importSuggestion.minPriceInSource }}</td>
       <td>{{ importSuggestion.minPriceInDestination }}</td>
       <td>{{ importSuggestion.volRemainingInDestination }}</td>
       <td>{{ importSuggestion.distinctMarketOrdersInDestination }}</td>
       <td>{{ importSuggestion.numberSoldInDestinationPerDay }}</td>
+      <!-- <td>{{ importSuggestion.calculateProfitPerItem() }}</td> -->
     </tr>
   </tbody>
 </table>
+
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
