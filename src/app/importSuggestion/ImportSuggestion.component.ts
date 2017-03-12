@@ -29,6 +29,7 @@ export class ImportSuggestionComponent {
 
   loadData(importSuggestions: ImportSuggestion[]){
     this.importSuggestions = importSuggestions
+    console.log("Loaded " + importSuggestions.length + " import suggestions");
     this.importSuggestionsLoaded = true
   }
 

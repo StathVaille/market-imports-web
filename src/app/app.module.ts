@@ -7,7 +7,7 @@ import { MaterializeModule } from "angular2-materialize";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ImportSuggestionComponent } from "./importSuggestionTable/importSuggestion.component";
+import { ImportSuggestionComponent } from "./importSuggestion/importSuggestion.component";
 
 @NgModule({
   declarations: [

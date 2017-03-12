@@ -11,7 +11,6 @@ import { ImportSuggestion } from '../domain/ImportSuggestion';
 @Injectable()
 export class ImportSuggestionService {
 
-  //private url = 'http://localhost:5000/api/fakeimport';
   private url = 'http://localhost:5000/api/import';
 
   constructor(private _http: Http) {}
@@ -48,26 +47,4 @@ export class ImportSuggestionService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
-
-
-  // getStaticImportSuggestions() : any[] {
-  //     return [{
-  //                 itemName: "test item",
-  //                 itemVolume: 40,
-  //                 minPriceInSource: 100.3,
-  //                 minPriceInDestination: 234.2,
-  //                 volRemainingInDestination: 7,
-  //                 distinctMarketOrdersInDestination: 34,
-  //                 numberSoldInDestinationPerDay: 3
-  //             },
-  //             {
-  //                 itemName: "test item",
-  //                 itemVolume: 40,
-  //                 minPriceInSource: 100.3,
-  //                 minPriceInDestination: 234.2,
-  //                 volRemainingInDestination: 7,
-  //                 distinctMarketOrdersInDestination: 34,
-  //                 numberSoldInDestinationPerDay: 3
-  //             }]
-  // }
 }
