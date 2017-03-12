@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { ImportSuggestion } from '../domain/importSuggestion';
+import { ImportSuggestion } from '../domain/ImportSuggestion';
 
 @Injectable()
 export class ImportSuggestionService {
@@ -25,7 +25,14 @@ export class ImportSuggestionService {
   private extractData(res: Response){
     console.log('Data loaded')
     let body = res.json();
-    return body.data || { };
+
+    let importSuggestions: ImportSuggestion[] = [];
+    for (let importSuggestionJson of body.data) {
+      let importSuggestion =  new ImportSuggestion().deserialize(importSuggestionJson);
+      importSuggestions.push(importSuggestion);
+    }
+
+    return importSuggestions || {};
   }
 
   private handleError(error: Response | any){
