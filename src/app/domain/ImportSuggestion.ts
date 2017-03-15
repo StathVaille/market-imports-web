@@ -26,6 +26,11 @@ export class ImportSuggestion implements Serializable<ImportSuggestion> {
     return this.calculateProfitPerItem() * this.numberSoldInDestinationPerDay;
   }
 
+  calculateMargin() : string {
+    let margin = this.minPriceInDestination / this.minPriceInSource
+    return "" + (margin * 100).toFixed(2) + "%"
+  }
+
   formatISK(isk: number) : string {
     return this.roundDecimal(isk).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }

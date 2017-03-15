@@ -15,6 +15,7 @@
 <table *ngIf="importSuggestionsLoaded && !errorMessage" class="striped">
   <thead>
     <tr>
+        <th >Icon</th>
         <th data-field="name">Name</th>
         <th data-field="itemVolume">Volume</th>
         <th data-field="minPriceInSource">Source Price</th>
@@ -22,14 +23,16 @@
         <th data-field="volRemainingInDestination"># On Market</th>
         <th data-field="distinctMarketOrdersInDestination">Sell Orders</th>
         <th data-field="numberSoldInDestinationPerDay">Daily Sales</th>
+        <th data-field="margin">Margin</th>
         <th data-field="profitPerItem">Profit/Item</th>
-        <th data-field="profitPerItem">Profit/Day</th>
+        <th data-field="profitPerDay">Profit/Day</th>
 
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let importSuggestion of importSuggestions">
+      <td><img src="https://image.eveonline.com/Type/{{importSuggestion.item.typeId}}_32.png" alt="" class="responsive-img"></td>
       <td>{{ importSuggestion.item.name.en }}</td>
       <td>{{ importSuggestion.item.volume }}</td>
       <td>{{ importSuggestion.formatISK(importSuggestion.minPriceInSource) }}</td>
@@ -37,6 +40,7 @@
       <td>{{ importSuggestion.volRemainingInDestination }}</td>
       <td>{{ importSuggestion.distinctMarketOrdersInDestination }}</td>
       <td>{{ importSuggestion.roundDecimal(importSuggestion.numberSoldInDestinationPerDay) }}</td>
+      <td>{{ importSuggestion.calculateMargin() }}</td>
       <td>{{ importSuggestion.formatISK(importSuggestion.calculateProfitPerItem()) }}</td>
       <td>{{ importSuggestion.formatISK(importSuggestion.calculatePossibleDailyProfit()) }}</td>
     </tr>
